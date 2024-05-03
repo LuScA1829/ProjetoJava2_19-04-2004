@@ -4,26 +4,24 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
-        <title>Livros</title>
+        <title>Generos</title>
     </head>
     <body>
-        <h1>Livros!!!</h1>
-        <a href="/livros/insert">Novo Livro</a>
+        <h1>Generos!!!</h1>
+        <a href="/genero/insert">Novo Genero</a>
         <table>
             <tr>
                 <th>Id</th>
-                <th>Titulo</th>
-                <th>Genero</th>
+                <th>Nome</th>
                 <th>fklfdfgvsd</th>
             </tr>
-            <c:forEach var="l" items="${livros}">
+            <c:forEach var="l" items="${genero}">
                 <tr>
                     <td>${l.getId()}</td>
-                    <td>${l.getTitulo()}</td>
-                    <td>${l.getGenero()}</td>
+                    <td>${l.getNome()}</td>
                     <td>
-                        <a href="/livros/update/${l.getId()}">Editar</a>
-                        <a href="/livros/delete/${l.getId()}">Excluir</a>
+                        <a href="/genero/update/${l.getId()}">Editar</a>
+                        <a href="/genero/delete/${l.getId()}">Excluir</a>
                     </td>
                 </tr>
             </c:forEach>

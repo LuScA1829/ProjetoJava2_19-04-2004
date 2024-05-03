@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import application.model.Livro;
-import application.repository.LivroRepository;
+import application.model.Genero;
+import application.repository.GeneroRepository;
 
 @Controller
-@RequestMapping("/livros")
-public class LivroController {
+@RequestMapping("/genero")
+public class GeneroController {
     @Autowired
-    private LivroRepository livroRepo;
+    private GeneroRepository generoRepo;
 
     @RequestMapping("/list")
     public String list(Model ui) {
@@ -31,72 +31,70 @@ public class LivroController {
         //livros[1].setTitulo("Livro teste 2");
         //livros[1].setGenero("G2");
 
-        ui.addAttribute("livros", livroRepo.findAll());
+        ui.addAttribute("genero", generoRepo.findAll());
 
-        return "/livros/list";
+        return "/genero/list";
     }
 
     @RequestMapping("/insert")
     public String insert() {
-        return "/livros/insert";
+        return "/genero/insert";
     }
 
     
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public String insert(@RequestParam("titulo") String titulo, @RequestParam("genero") String genero) {
+    public String insert(@RequestParam("nome") String nome) {
 
-        Livro livro = new Livro();
-        livro.setTitulo(titulo);
-        livro.setGenero(genero);
+        Genero genero = new Genero();
+        genero.setNome(nome);
 
-        livroRepo.save(livro);
+        generoRepo.save(genero);
         
-        return "redirect:/livros/list";
+        return "redirect:/genero/list";
     }
 
     @RequestMapping("/update/{id}")
     public String update(Model ui, @PathVariable long id){
-        Optional<Livro> resultado = livroRepo.findById(id);
+        Optional<Genero> resultado = generoRepo.findById(id);
 
         if (resultado.isPresent()) {
-            ui.addAttribute("livro", resultado.get());
-            return "/livros/update";
+            ui.addAttribute("genero", resultado.get());
+            return "/genero/update";
         }
-        return "redirect:/livros/list";
+        return "redirect:/genero/list";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(@RequestParam("id") long id,
-        @RequestParam("titulo") String titulo,
-        @RequestParam("genero") String genero) {
+        @RequestParam("nome") String nome) {
         
-        Optional<Livro> resultado = livroRepo.findById(id);
+        Optional<Genero> resultado = generoRepo.findById(id);
 
         if(resultado.isPresent()){
-            resultado.get().setTitulo(titulo);
-            resultado.get().setGenero(genero);
+            resultado.get().setNome(nome);
+            
 
-            livroRepo.save(resultado.get());
+            generoRepo.save(resultado.get());
         }
         
-        return "redirect:/livros/list";
+        return "redirect:/genero/list";
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(Model ui, @PathVariable long id){
-        Optional<Livro> resultado = livroRepo.findById(id);
+        Optional<Genero> resultado = generoRepo.findById(id);
 
         if (resultado.isPresent()) {
-            ui.addAttribute("livro", resultado.get());
-            return "/livros/delete";
+            ui.addAttribute("genero", resultado.get());
+            return "/genero/delete";
         }
-        return "redirect:/livros/list";
+        return "redirect:/genero/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("id") long id) {
-        livroRepo.deleteById(id);
+        generoRepo.deleteById(id);
 
-        return "redirect:/livros/list";
+        return "redirect:/genero/list";
     }
 }
