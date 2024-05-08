@@ -1,10 +1,13 @@
 package application.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,13 +36,5 @@ public class Genero {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Set<Livro> getLivros() {
-        return livros;
-    }
-
-    public void setLivros(Set<Livro> livros) {
-        this.livros = livros;
     }
 }

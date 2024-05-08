@@ -14,31 +14,22 @@ import application.model.Genero;
 import application.repository.GeneroRepository;
 
 @Controller
-@RequestMapping("/genero")
+@RequestMapping("/generos")
 public class GeneroController {
     @Autowired
     private GeneroRepository generoRepo;
 
     @RequestMapping("/list")
     public String list(Model ui) {
-        //Livro[] livros = new Livro[2];
-        //livros[0] = new Livro();
-        //livros[0].setId(1);
-        //livros[0].setTitulo("Livro teste 1");
-        //livros[0].setGenero("G1");
-        //livros[1] = new Livro();
-        //livros[1].setId(2);
-        //livros[1].setTitulo("Livro teste 2");
-        //livros[1].setGenero("G2");
 
-        ui.addAttribute("genero", generoRepo.findAll());
+        ui.addAttribute("generos", generoRepo.findAll());
 
-        return "/genero/list";
+        return "/generos/list";
     }
 
     @RequestMapping("/insert")
     public String insert() {
-        return "/genero/insert";
+        return "/generos/insert";
     }
 
     
@@ -50,18 +41,18 @@ public class GeneroController {
 
         generoRepo.save(genero);
         
-        return "redirect:/genero/list";
+        return "redirect:/generos/list";
     }
 
     @RequestMapping("/update/{id}")
-    public String update(Model ui, @PathVariable long id){
+    public String update(@PathVariable long id, Model ui){
         Optional<Genero> resultado = generoRepo.findById(id);
 
         if (resultado.isPresent()) {
             ui.addAttribute("genero", resultado.get());
-            return "/genero/update";
+            return "/generos/update";
         }
-        return "redirect:/genero/list";
+        return "redirect:/generos/list";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -77,7 +68,7 @@ public class GeneroController {
             generoRepo.save(resultado.get());
         }
         
-        return "redirect:/genero/list";
+        return "redirect:/generos/list";
     }
 
     @RequestMapping("/delete/{id}")
@@ -86,15 +77,15 @@ public class GeneroController {
 
         if (resultado.isPresent()) {
             ui.addAttribute("genero", resultado.get());
-            return "/genero/delete";
+            return "/generos/delete";
         }
-        return "redirect:/genero/list";
+        return "redirect:/generos/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("id") long id) {
         generoRepo.deleteById(id);
 
-        return "redirect:/genero/list";
+        return "redirect:/generos/list";
     }
 }
