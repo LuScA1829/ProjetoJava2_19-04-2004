@@ -19,6 +19,13 @@ public class Livro{
     @ManyToOne
     @JoinColumn(name = "id_genero", nullable = false)
     private Genero genero;
+
+    @ManyToMany
+    @JoinTable(
+        name = "livros_possuem_autores",
+        JoinColumns = @JoinColumn(name = "livro_id"),
+        inverseJoinColumns = @JoinColumn(name = "autor_id"))
+    private Set<Autor> autores;
     
     public long getId() {
         return id;
@@ -37,6 +44,13 @@ public class Livro{
     }
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    public Set<Autor> getAutores() {
+        return this.autores;
+    }
+    public void setAutores(Set<Autor> autores) {
+        this.autores = autores;
     }
     
 }

@@ -9,6 +9,7 @@
         <h1>Olá Spring!!!</h1>
         <a href="/livros/list">Livros</a>
         <a href="/generos/list">Generos</a>
+        <a href="/autores/list">Autores</a>
     </body>
 </html>
 
