@@ -13,14 +13,14 @@
             <tr>
                 <th>Id</th>
                 <th>Titulo</th>
-                /**<th>Genero</th>*/
+                <th>Genero</th>
                 <th>fklfdfgvsd</th>
             </tr>
             <c:forEach var="l" items="${livros}">
                 <tr>
                     <td>${l.getId()}</td>
                     <td>${l.getTitulo()}</td>
-                    <td>${l.getGenero().getNome()}</td>
+                    <td>${l.getGenero().nome}</td>
                     <td>
                         <a href="/livros/update/${l.getId()}">Editar</a>
                         <a href="/livros/delete/${l.getId()}">Excluir</a>
