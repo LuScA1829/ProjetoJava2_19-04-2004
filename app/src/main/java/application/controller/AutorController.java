@@ -14,7 +14,7 @@ import application.model.Autor;
 import application.repository.AutorRepository;
 
 @Controller
-@RequestMapping("/autor")
+@RequestMapping("/autores")
 public class AutorController {
     @Autowired
     private AutorRepository autorRepo;
@@ -56,15 +56,12 @@ public class AutorController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@RequestParam("id") long id,
-        @RequestParam("nome") String nome) {
+    public String update(@RequestParam("id") long id, @RequestParam("nome") String nome) {
         
         Optional<Autor> resultado = autorRepo.findById(id);
 
         if(resultado.isPresent()){
             resultado.get().setNome(nome);
-            
-
             autorRepo.save(resultado.get());
         }
         
