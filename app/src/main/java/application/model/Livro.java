@@ -28,7 +28,7 @@ public class Livro{
     @ManyToMany
     @JoinTable(
         name = "livros_possuem_autores",
-        JoinColumns = @JoinColumn(name = "livro_id"),
+        joinColumns = @JoinColumn(name = "livro_id"),
         inverseJoinColumns = @JoinColumn(name = "autor_id"))
     private Set<Autor> autores = new HashSet<Autor>();
     
