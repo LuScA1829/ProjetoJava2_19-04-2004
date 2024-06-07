@@ -4,9 +4,10 @@
     <head>
         <meta charset="UTF-8" />
         <title>Deletar Autor</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link href="/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
+        <%@ include file = "../menubar.jsp" %>
         <div class="container">
             <h1>Excluindo Autor!!!</h1>
             <p>

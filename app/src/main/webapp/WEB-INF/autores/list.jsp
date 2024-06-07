@@ -5,9 +5,10 @@
     <head>
         <meta charset="UTF-8" />
         <title>Autores</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link href="/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
+        <%@ include file = "../menubar.jsp" %>
         <div class="container">
             <h1>Autores!!!</h1>
             <a href="/autores/insert" class="btn btn-primary">Novo Autor</a>
@@ -17,13 +18,13 @@
                     <th>Nome</th>
                     <th>&nbsp;</th>
                 </tr>
-                <c:forEach var="g" items="${autores}">
+                <c:forEach var="a" items="${autores}">
                     <tr>
                         <td>${a.id}</td>
                         <td>${a.nome}</td>
                         <td>
-                            <a href="/autores/update/${g.id}" class="btn btn-secondary">Editar</a>
-                            <a href="/autores/delete/${g.id}" class="btn btn-danger">Excluir</a>
+                            <a href="/autores/update/${a.id}" class="btn btn-secondary">Editar</a>
+                            <a href="/autores/delete/${a.id}" class="btn btn-danger">Excluir</a>
                         </td>
                     </tr>
                 </c:forEach>
